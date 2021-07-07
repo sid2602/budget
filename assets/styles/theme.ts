@@ -1,4 +1,5 @@
 const basicColors = {
+  primaryDark: "#0071ad",
   primary: "#0085CF",
   primaryLight: "#EAF7FF",
   secondary: "#17E4BD",
@@ -24,6 +25,7 @@ export const lightTheme = {
   fontSizes: {
     ...basicFontSizes,
   },
+  borderRadius: "1rem",
   input: {
     background: "#FFFFFF",
     border: "#C6C6C6",

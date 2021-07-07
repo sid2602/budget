@@ -6,7 +6,7 @@ import { Button, ButtonProps } from "./button";
 
 export default {
   component: Button,
-  title: "Components/Atoms/Button",
+  title: "atoms/Button",
 } as Meta;
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;

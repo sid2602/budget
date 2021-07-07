@@ -7,7 +7,6 @@ export type ButtonProps = {
   onClick: () => void;
   isLoading?: boolean;
   primary?: boolean;
-
   small?: boolean;
   fullWidth?: boolean;
 };
@@ -59,10 +58,10 @@ const StyledButton = styled.button<ButtonProps>`
   ${({ primary }) =>
     primary &&
     css`
-      background-color: #0085cf;
+      background-color: ${({ theme }) => theme.colors.primary};
       color: white;
       :hover {
-        background-color: #0071ad;
+        background-color: ${({ theme }) => theme.colors.primaryDark};
       }
     `}
 

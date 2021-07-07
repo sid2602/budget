@@ -7,18 +7,16 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeTypes }>`
     ${reset}
     ${normalize}
 
-
     *{
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
     }   
 
-
     html,body{
-      
         height: 100vh;
         overflow-x: hidden;
         background: ${(props) => props.theme.background};
+      
         font-family: 'Poppins', sans-serif;
     }
     #root{
