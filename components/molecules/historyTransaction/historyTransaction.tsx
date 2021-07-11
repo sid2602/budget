@@ -31,7 +31,7 @@ export const HistoryTransaction: React.FC<HistoryTransactionProps> = ({
   );
 };
 
-const StyledHistoryTransaction = styled.div`
+export const StyledHistoryTransaction = styled.div`
   display: flex;
   height: 72px;
   align-items: center;
@@ -40,7 +40,10 @@ const StyledHistoryTransaction = styled.div`
   font-weight: bold;
 `;
 
-const IconContainer = styled.div`
+export const IconContainer = styled.div`
+  flex: none;
+  max-width: 75px;
+  margin-right: 1rem;
   svg {
     width: 50px;
     height: 50px;
@@ -51,7 +54,6 @@ const CategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
-  margin-left: 1rem;
 `;
 
 const Category = styled.span`

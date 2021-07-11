@@ -12,7 +12,7 @@ import styled from "styled-components";
 
 export default {
   component: HistoryTransactionContainer,
-  title: "molecules/history Transaction Container",
+  title: "organisms/history Transaction Container",
 } as Meta;
 
 const Template: Story<HistoryTransactionProps> = (args) => (
