@@ -15,7 +15,7 @@ export const HistoryTransactionExtendedContainer: React.FC<HistoryTransactionExt
         <Heading>Planowane przychody</Heading>
         <Heading>Rzeczywiste przychody</Heading>
         <Heading>Stopień realizacji %</Heading>
-        <Heading>Komenatrz</Heading>
+        <CommentHeading>Komenatrz/ Pokaż więcej</CommentHeading>
       </Header>
 
       {children}
@@ -46,4 +46,8 @@ const Category = styled.div`
 
 const Heading = styled.div`
   flex: 1;
+`;
+
+const CommentHeading = styled(Heading)`
+  text-align: center;
 `;

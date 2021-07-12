@@ -28,11 +28,20 @@ const Template: Story<HistoryTransactionExtendedProps> = (args) => (
 );
 
 export const Default = Template.bind({});
-
+export const Editable = Template.bind({});
 Default.args = {
   Icon: MdKitchen,
   expectedPrice: 3000,
   actualPrice: 2500,
   category: "Jedzenie dom",
   comment: "some comment",
+};
+
+Editable.args = {
+  Icon: MdKitchen,
+  expectedPrice: 3000,
+  actualPrice: 2500,
+  category: "Jedzenie dom",
+  comment: "some comment",
+  extended: true,
 };

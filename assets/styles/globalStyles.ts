@@ -25,6 +25,13 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeTypes }>`
         position: relative;
     }
 
+    button{
+        padding: 0;
+        margin: 0;
+        border: 0;
+        background-color: white;
+        cursor: pointer;
+    }
 
 
 `;

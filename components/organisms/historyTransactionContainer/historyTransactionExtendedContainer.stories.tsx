@@ -2,18 +2,18 @@ import React from "react";
 import { MdKitchen } from "react-icons/md";
 import { Story, Meta } from "@storybook/react";
 import GlobalStyles from "../../../assets/styles/globalStyles";
+import { HistoryTransactionExtended } from "../../molecules/historyTransaction/historyTransactionExtended";
 import {
-  HistoryTransactionExtended,
-  HistoryTransactionExtendedProps,
-} from "../../molecules/historyTransaction/historyTransactionExtended";
-import { HistoryTransactionExtendedContainer } from "./historyTransactionExtendedContainer";
+  HistoryTransactionExtendedContainer,
+  HistoryTransactionExtendedContainerProps,
+} from "./historyTransactionExtendedContainer";
 
 export default {
   component: HistoryTransactionExtendedContainer,
   title: "organisms/history Transaction Extended Container",
 } as Meta;
 
-const Template: Story<HistoryTransactionExtendedProps> = (args) => (
+const Template: Story<HistoryTransactionExtendedContainerProps> = (args) => (
   <>
     <GlobalStyles />{" "}
     <HistoryTransactionExtendedContainer>
@@ -23,7 +23,17 @@ const Template: Story<HistoryTransactionExtendedProps> = (args) => (
         comment="Comment"
         expectedPrice={3000}
         actualPrice={2000}
-      />
+        extended={true}
+      >
+        <HistoryTransactionExtended
+          Icon={MdKitchen}
+          category="Jedzenie dom"
+          comment="Comment"
+          expectedPrice={3000}
+          actualPrice={2000}
+          podcategory={true}
+        />
+      </HistoryTransactionExtended>
       <HistoryTransactionExtended
         Icon={MdKitchen}
         category="Jedzenie dom"

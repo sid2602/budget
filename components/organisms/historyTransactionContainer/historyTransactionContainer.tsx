@@ -2,18 +2,26 @@ import styled from "styled-components";
 
 export type HistoryTransactionContainerProps = {
   children: JSX.Element[];
+  editable?: boolean;
 };
 
 export const HistoryTransactionContainer: React.FC<HistoryTransactionContainerProps> = ({
   children,
+  editable,
 }) => {
   return (
-    <Container>
+    <Container editable={editable}>
       <Header>
         <SvgPlace />
         <Category>Kategoria</Category>
         <Comment>Komentarz</Comment>
         <Action>Akcja</Action>
+        {editable && (
+          <>
+            <ExtendedHeading>Edytuj</ExtendedHeading>
+            <ExtendedHeading>Usuń</ExtendedHeading>
+          </>
+        )}
       </Header>
 
       {children}
@@ -21,8 +29,16 @@ export const HistoryTransactionContainer: React.FC<HistoryTransactionContainerPr
   );
 };
 
-const Container = styled.section`
-  max-width: 735px;
+HistoryTransactionContainer.defaultProps = {
+  editable: false,
+};
+
+type ContainerStyledProps = {
+  editable?: boolean;
+};
+
+const Container = styled.section<ContainerStyledProps>`
+  max-width: ${({ editable }) => (editable ? "870px" : "735px")};
 `;
 
 const Header = styled.header`
@@ -48,4 +64,11 @@ const Comment = styled.div`
 
 const Action = styled.div`
   flex: 0.5;
+`;
+
+const ExtendedHeading = styled.button`
+  flex: 0.3;
+  color: ${({ theme }) => theme.colors.gray};
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
 `;
