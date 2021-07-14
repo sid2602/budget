@@ -6,6 +6,8 @@ const basicColors = {
   tertiary: "#6E80FF",
   error: "#FF6C6C",
   fontColor: "#000000",
+  gray: "#CDCDCD",
+  grayLight: "#F4F4F4",
 };
 
 const basicFontSizes = {
