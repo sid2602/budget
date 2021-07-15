@@ -16,6 +16,7 @@ const Template: Story<InfoPrevProps> = (args) => (
 );
 
 export const Default = Template.bind({});
+export const Extended = Template.bind({});
 
 Default.args = {
   Icon: GiTakeMyMoney,
@@ -24,4 +25,15 @@ Default.args = {
   percent: 20,
   progress: true,
   marked: true,
+};
+
+Extended.args = {
+  Icon: GiTakeMyMoney,
+  title: "Przychód",
+  score: 3000,
+  percent: 20,
+  progress: true,
+  marked: true,
+  extended: true,
+  lastScore: 400,
 };

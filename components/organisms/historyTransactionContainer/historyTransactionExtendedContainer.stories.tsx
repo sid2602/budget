@@ -33,6 +33,14 @@ const Template: Story<HistoryTransactionExtendedContainerProps> = (args) => (
           actualPrice={2000}
           podcategory={true}
         />
+        <HistoryTransactionExtended
+          Icon={MdKitchen}
+          category="Jedzenie dom"
+          comment="Comment"
+          expectedPrice={3000}
+          actualPrice={2000}
+          podcategory={true}
+        />
       </HistoryTransactionExtended>
       <HistoryTransactionExtended
         Icon={MdKitchen}

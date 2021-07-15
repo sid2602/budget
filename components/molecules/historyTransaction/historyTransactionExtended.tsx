@@ -1,4 +1,5 @@
 import { IconType } from "react-icons/lib";
+import React from "react";
 import { StyledHistoryTransaction, IconContainer } from "./historyTransaction";
 import styled from "styled-components";
 import { ProgressCircular } from "../../atoms/progressBar/progressBar";
@@ -60,10 +61,11 @@ HistoryTransactionExtended.defaultProps = {
 
 type StyledHistoryTransactionContainerProps = {
   extended?: boolean;
+  children: React.ReactNode;
 };
 
 const StyledHistoryTransactionContainer = styled.div<StyledHistoryTransactionContainerProps>`
-  height: ${({ extended }) => (extended ? "400px" : "72px")};
+  min-height: 72px;
   display: flex;
   flex-direction: column;
   overflow: hidden;

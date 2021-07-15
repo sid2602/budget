@@ -8,6 +8,8 @@ export type InfoPrevProps = {
   percent: number;
   progress: boolean;
   marked?: boolean;
+  extended?: boolean;
+  lastScore?: number;
 };
 
 export const InfoPrev: React.FC<InfoPrevProps> = ({
@@ -17,20 +19,34 @@ export const InfoPrev: React.FC<InfoPrevProps> = ({
   percent,
   marked,
   progress,
+  extended,
+  lastScore,
 }) => {
   return (
-    <InfoPrevSection>
+    <InfoPrevSection extended={extended}>
       <InfoHeader>
         <h2>{title}</h2>
       </InfoHeader>
-      <InfoContainer marked={marked}>
+      <InfoContainer marked={marked} extended={extended}>
         <IconContainer>
           <Icon />
         </IconContainer>
-        <Details progress={progress}>
-          <span>{score} zł</span>
-          <span>{percent} %</span>
-        </Details>
+        {extended && lastScore ? (
+          <Details progress={progress} extended={extended}>
+            <DetailsTitle>{title} całkowity</DetailsTitle>
+            <BigSpan>{score}zł</BigSpan>
+            <DetailsTitle>od ostatniego miesiaca</DetailsTitle>
+            <SmallInfoContainer>
+              <span>{lastScore} zł</span>
+              <span>{percent} %</span>
+            </SmallInfoContainer>
+          </Details>
+        ) : (
+          <Details progress={progress}>
+            <span>{score} zł</span>
+            <span>{percent} %</span>
+          </Details>
+        )}
       </InfoContainer>
     </InfoPrevSection>
   );
@@ -38,12 +54,16 @@ export const InfoPrev: React.FC<InfoPrevProps> = ({
 
 InfoPrev.defaultProps = {
   marked: false,
+  extended: false,
 };
 
-const InfoPrevSection = styled.section`
-  width: 300px;
-  height: 300px;
+type ExtendedProps = {
+  extended?: boolean;
+};
 
+const InfoPrevSection = styled.section<ExtendedProps>`
+  width: ${({ extended }) => (extended ? "400px" : "300px")};
+  height: 300px;
   display: flex;
   flex-direction: column;
 `;
@@ -62,6 +82,7 @@ const InfoHeader = styled.header`
 
 type InfoContainerProps = {
   marked?: boolean;
+  extended?: boolean;
 };
 
 const InfoContainer = styled.div<InfoContainerProps>`
@@ -70,7 +91,9 @@ const InfoContainer = styled.div<InfoContainerProps>`
   background-color: ${({ theme, marked }) =>
     marked ? theme.colors.primaryLight : "#fff"};
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ extended }) => (extended ? "row-reverse" : "column")};
+  justify-content: center;
+  align-items: ${({ extended }) => (extended ? "center" : "normal")};
   border-radius: 1rem;
   padding: 1rem;
 `;
@@ -90,14 +113,33 @@ const IconContainer = styled.div`
 
 type DetailsProps = {
   progress: boolean;
+  extended?: boolean;
 };
 
-const Details = styled.div<DetailsProps>`
-  height: 50px;
-  align-items: center;
+const DetailsTitle = styled.p`
+  color: ${({ theme }) => theme.colors.gray};
+  display: block;
+  margin: 1rem 0;
+`;
+
+const BigSpan = styled.span`
+  display: block;
+  font-size: ${({ theme }) => theme.fontSizes.md};
+`;
+
+const SmallInfoContainer = styled.div`
   display: flex;
-  padding: 0 1rem;
   justify-content: space-between;
+`;
+
+const Details = styled.div<DetailsProps>`
+  height: ${({ extended }) => (extended ? "100%" : "50px")};
+  align-items: ${({ extended }) => (extended ? "normal" : "center")};
+  display: flex;
+  flex-direction: ${({ extended }) => (extended ? "column" : "row")};
+  padding: 0 1rem;
+
+  justify-content: ${({ extended }) => (extended ? "center" : "space-between")};
   font-weight: bold;
   color: ${({ theme, progress }) =>
     progress ? theme.colors.secondary : theme.colors.error};
