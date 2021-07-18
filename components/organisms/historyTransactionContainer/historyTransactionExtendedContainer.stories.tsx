@@ -1,8 +1,8 @@
 import React from "react";
 import { MdKitchen } from "react-icons/md";
 import { Story, Meta } from "@storybook/react";
-import GlobalStyles from "../../../assets/styles/globalStyles";
-import { HistoryTransactionExtended } from "../../molecules/historyTransaction/historyTransactionExtended";
+import GlobalStyles from "assets/styles/globalStyles";
+import { HistoryTransactionExtended } from "components/molecules/historyTransaction/historyTransactionExtended";
 import {
   HistoryTransactionExtendedContainer,
   HistoryTransactionExtendedContainerProps,

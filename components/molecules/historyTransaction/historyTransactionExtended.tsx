@@ -2,7 +2,7 @@ import { IconType } from "react-icons/lib";
 import React from "react";
 import { StyledHistoryTransaction, IconContainer } from "./historyTransaction";
 import styled from "styled-components";
-import { ProgressCircular } from "../../atoms/progressBar/progressBar";
+import { ProgressCircular } from "components/atoms/progressBar/progressBar";
 import { BsChevronDown } from "react-icons/bs";
 export type HistoryTransactionExtendedProps = {
   Icon: IconType;
