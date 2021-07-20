@@ -55,6 +55,9 @@ export const Navigation = () => {
 };
 
 const Nav = styled.nav`
+  position: fixed;
+  left: 0;
+  top: 0;
   padding: 2rem 1rem;
   width: 120px;
   height: 100%;

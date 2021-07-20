@@ -3,6 +3,8 @@ import ReactSelect from "react-select";
 import styled from "styled-components";
 
 const StyledSelect = styled(ReactSelect)`
+  width: 100%;
+
   .select__control {
     margin: 0.5rem 0;
     background-color: ${({ theme }) => theme.input.background};
@@ -35,14 +37,19 @@ export type SelectData = {
 
 export type SelectProps = {
   data: SelectData[];
+  placeholder?: String;
 };
 
-export const Select: React.FC<SelectProps> = ({ data, ...rest }) => (
+export const Select: React.FC<SelectProps> = ({
+  data,
+  placeholder,
+  ...rest
+}) => (
   <StyledSelect
     options={data}
     className="basic-multi-select"
     classNamePrefix="select"
-    placeholder="Wybierz"
+    placeholder={placeholder ? placeholder : "Wybierz"}
     {...rest}
   />
 );

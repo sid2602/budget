@@ -1,8 +1,9 @@
-import { Navigation } from "components/organisms/navigation/navigation";
+import { AppWrapper } from "components/templates/appWrapper/appWrapper";
+
 export default function Home() {
   return (
     <>
-      <Navigation />
+      <AppWrapper title="Strona główna"></AppWrapper>
     </>
   );
 }

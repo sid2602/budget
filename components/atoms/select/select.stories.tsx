@@ -15,7 +15,7 @@ const Template: Story<SelectProps> = (args) => (
 );
 
 export const Default = Template.bind({});
-export const ChangedWidth = Template.bind({});
+export const ChangedPlaceholder = Template.bind({});
 
 const defData = [
   { value: 1, label: "something1" },
@@ -31,4 +31,9 @@ const defData = [
 
 Default.args = {
   data: defData,
+};
+
+ChangedPlaceholder.args = {
+  data: defData,
+  placeholder: "changed placeholder",
 };
