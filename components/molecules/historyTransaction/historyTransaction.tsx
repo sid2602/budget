@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IconType } from "react-icons/lib";
-import { convertDateToString } from "../../../helpers/convertDateToString";
+import { convertDateToString } from "helpers/convertDateToString";
 import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 export type HistoryTransactionProps = {

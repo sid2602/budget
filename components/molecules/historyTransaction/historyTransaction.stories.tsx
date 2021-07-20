@@ -1,7 +1,7 @@
 import React from "react";
 import { MdKitchen } from "react-icons/md";
 import { Story, Meta } from "@storybook/react";
-import GlobalStyles from "../../../assets/styles/globalStyles";
+import GlobalStyles from "assets/styles/globalStyles";
 import {
   HistoryTransaction,
   HistoryTransactionProps,

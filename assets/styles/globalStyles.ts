@@ -19,10 +19,32 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeTypes }>`
       
         font-family: 'Poppins', sans-serif;
     }
-    #root{
+    #__next{
         height: 100vh;
         overflow-x:hidden;
         position: relative;
+    }
+
+    h1,h2,h3,h4,h5{
+        font-weight: bold;
+        margin: 0;
+    }
+
+    h1{
+        font-size: ${({ theme }) => theme.fontSizes.lg};
+    }
+    h2{
+        font-size: ${({ theme }) => theme.fontSizes.md};
+
+    }
+
+    h3{
+        font-size: ${({ theme }) => theme.fontSizes.sm};
+    }
+
+    a{
+        color: black;
+        text-decoration: none;
     }
 
     button{

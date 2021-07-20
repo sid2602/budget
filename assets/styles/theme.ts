@@ -11,11 +11,11 @@ const basicColors = {
 };
 
 const basicFontSizes = {
-  xxs: "0.8em",
-  xs: "0.9em",
-  sm: "1em",
-  md: "2em",
-  lg: "3em",
+  xxs: "10px",
+  xs: "14px",
+  sm: "18px",
+  md: "24px",
+  lg: "32px",
 };
 
 export const lightTheme = {
