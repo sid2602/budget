@@ -4,6 +4,7 @@ const basicColors = {
   primaryLight: "#EAF7FF",
   secondary: "#17E4BD",
   tertiary: "#6E80FF",
+  errorDark: "#E56161",
   error: "#FF6C6C",
   fontColor: "#000000",
   darkGray: "#808080",
@@ -20,6 +21,15 @@ const basicFontSizes = {
   xl: "34px",
 };
 
+const lineHeights = {
+  xxs: "16px",
+  xs: "22px",
+  sm: "28px",
+  md: "34px",
+  lg: "38px",
+  xl: "44px",
+};
+
 export const lightTheme = {
   lightTheme: true,
   colors: {
@@ -28,6 +38,9 @@ export const lightTheme = {
   background: "#FFFFFF",
   fontSizes: {
     ...basicFontSizes,
+  },
+  lineHeights: {
+    ...lineHeights,
   },
   borderRadius: "10px",
   input: {
