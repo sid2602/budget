@@ -4,21 +4,22 @@ import { Loader } from "../loader/loader";
 
 export type ButtonProps = {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   isLoading?: boolean;
   primary?: boolean;
   small?: boolean;
   fullWidth?: boolean;
+  error?: boolean;
 };
 
 export const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
   primary,
-
   small,
   fullWidth,
   isLoading,
+  error,
 }) => {
   return (
     <StyledButton
@@ -27,6 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
       fullWidth={fullWidth}
       onClick={onClick}
       disabled={isLoading}
+      error={error}
     >
       {isLoading && <Loader />}
       <span>{children}</span>
@@ -40,6 +42,7 @@ Button.defaultProps = {
   small: false,
   onClick: () => {},
   fullWidth: false,
+  error: false,
 };
 
 const StyledButton = styled.button<ButtonProps>`
@@ -53,7 +56,7 @@ const StyledButton = styled.button<ButtonProps>`
   text-align: center;
   border: none;
   padding: 0.8rem 2.4rem;
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
 
   ${({ primary }) =>
     primary &&
@@ -62,6 +65,16 @@ const StyledButton = styled.button<ButtonProps>`
       color: white;
       :hover {
         background-color: ${({ theme }) => theme.colors.primaryDark};
+      }
+    `}
+
+  ${({ error }) =>
+    error &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+      color: white;
+      :hover {
+        background-color: ${({ theme }) => theme.colors.errorDark};
       }
     `}
 

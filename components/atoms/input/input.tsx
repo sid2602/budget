@@ -5,14 +5,20 @@ export type InputProps = {
   placeholder: string;
   value: string;
   error: string;
+  type?: string;
 };
 
-export const Input: React.FC<InputProps> = ({ placeholder, value, error }) => {
+export const Input: React.FC<InputProps> = ({
+  placeholder,
+  value,
+  error,
+  type,
+}) => {
   return (
-    <StyledContainer value={value} error={error}>
-      <input placeholder=" " value={value} />
+    <StyledInputContainer value={value} error={error}>
+      <input placeholder=" " value={value} type={type} />
       <label>{placeholder}</label>
-    </StyledContainer>
+    </StyledInputContainer>
   );
 };
 
@@ -20,6 +26,7 @@ Input.defaultProps = {
   placeholder: "text",
   value: "",
   error: "",
+  type: "text",
 };
 
 export type InputStyleProps = {
@@ -27,20 +34,19 @@ export type InputStyleProps = {
   error: string;
 };
 
-const StyledContainer = styled.div<InputStyleProps>`
+export const StyledInputContainer = styled.div<InputStyleProps>`
   position: relative;
-  height: 64px;
+  height: 48px;
   input {
     position: absolute;
-    border: 1px solid ${({ theme }) => theme.input.border};
-    font-weight: bold;
+    border: 1px solid ${({ theme }) => theme.colors.gray};
     left: 0;
     top: 0;
     border-radius: ${({ theme }) => theme.borderRadius};
     padding: 1.5rem 1rem 1rem 1rem;
     width: 100%;
     height: 100%;
-    font-size: ${({ theme }) => theme.fontSizes.sm};
+    font-size: ${({ theme }) => theme.fontSizes.xs};
     &:focus {
       outline: none;
     }
@@ -49,9 +55,10 @@ const StyledContainer = styled.div<InputStyleProps>`
   label {
     position: absolute;
     left: 1rem;
-    top: 1.5rem;
+    top: 1.1rem;
     transition: 0.3s;
-    font-size: 1rem;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+    color: ${({ theme }) => theme.colors.darkGray};
   }
 
   input:focus {
@@ -59,7 +66,7 @@ const StyledContainer = styled.div<InputStyleProps>`
   }
 
   input:focus + label {
-    top: 0.5rem;
+    top: 0.3rem;
     font-size: ${({ theme }) => theme.fontSizes.xxs};
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -68,7 +75,7 @@ const StyledContainer = styled.div<InputStyleProps>`
     value &&
     css`
       label {
-        top: 0.5rem;
+        top: 0.3rem;
         font-size: ${({ theme }) => theme.fontSizes.xxs};
         color: ${({ theme }) => theme.colors.primary};
       }
@@ -82,9 +89,9 @@ const StyledContainer = styled.div<InputStyleProps>`
     error &&
     css<InputStyleProps>`
       label {
-        top: ${({ value }) => (value ? "0.5rem" : "1.5rem")};
+        top: ${({ value }) => (value ? "0.3rem" : "1.5rem")};
         font-size: ${({ value, theme }) =>
-          value ? theme.fontSizes.xxs : theme.fontSizes.sm};
+          value ? theme.fontSizes.xxs : theme.fontSizes.xs};
         color: ${({ theme }) => theme.colors.error};
       }
 

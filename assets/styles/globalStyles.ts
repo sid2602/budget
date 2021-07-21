@@ -31,15 +31,15 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeTypes }>`
     }
 
     h1{
-        font-size: ${({ theme }) => theme.fontSizes.lg};
+        font-size: ${({ theme }) => theme.fontSizes.xl};
     }
     h2{
-        font-size: ${({ theme }) => theme.fontSizes.md};
+        font-size: ${({ theme }) => theme.fontSizes.lg};
 
     }
 
     h3{
-        font-size: ${({ theme }) => theme.fontSizes.sm};
+        font-size: ${({ theme }) => theme.fontSizes.md};
     }
 
     a{
