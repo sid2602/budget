@@ -4,9 +4,10 @@ import styled from "styled-components";
 
 const StyledSelect = styled(ReactSelect)`
   width: 100%;
-
+  height: auto;
   .select__control {
-    margin: 0.5rem 0;
+    height: 48px;
+    font-size: ${({ theme }) => theme.fontSizes.xs};
     background-color: ${({ theme }) => theme.input.background};
     color: ${({ theme }) => theme.colors.fontColor};
     border: 1px solid ${({ theme }) => theme.colors.gray};

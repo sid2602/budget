@@ -4,7 +4,7 @@ import { Loader } from "../loader/loader";
 
 export type ButtonProps = {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   isLoading?: boolean;
   primary?: boolean;
   small?: boolean;
@@ -53,7 +53,7 @@ const StyledButton = styled.button<ButtonProps>`
   text-align: center;
   border: none;
   padding: 0.8rem 2.4rem;
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
 
   ${({ primary }) =>
     primary &&
