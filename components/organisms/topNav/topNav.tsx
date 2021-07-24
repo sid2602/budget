@@ -54,7 +54,7 @@ const TopNavStyled = styled.nav`
   display: flex;
   align-items: center;
   height: 50px;
-  margin-bottom: 1rem;
+  margin: 1.5rem 0;
 `;
 
 const Heading = styled.header`
@@ -71,7 +71,7 @@ const ButtonSection = styled.div`
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  width: 350px;
+  width: 380px;
   justify-content: space-between;
   align-items: center;
 `;

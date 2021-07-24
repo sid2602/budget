@@ -20,7 +20,10 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children, title }) => {
 };
 
 const BodyContainer = styled.div`
-  margin-left: 120px;
+  margin: 1rem 45px 0 165px;
+
+  display: flex;
+  height: 100%;
 `;
 
 const Column = styled.div`

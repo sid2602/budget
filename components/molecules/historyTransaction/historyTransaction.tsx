@@ -86,6 +86,7 @@ const CategoryContainer = styled.div`
 const Category = styled.span`
   color: ${({ theme }) => theme.colors.primary};
   display: block;
+  margin-bottom: 0.5rem;
 `;
 
 const Date = styled.span`
@@ -107,6 +108,7 @@ const Action = styled.div<ActionType>`
 
 const Comment = styled.div`
   flex: 0.8;
+  margin-right: 1rem;
 `;
 
 const Recordbutton = styled.button`
