@@ -1,9 +1,20 @@
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
+import { useModalContext, ModalType } from "contexts/ModalContext";
 
 export const ActionButton = () => {
+  const {
+    handleModadlTypeChange,
+    handleModalVisabilityChange,
+  } = useModalContext();
+
+  const handleClick = () => {
+    handleModadlTypeChange(ModalType.addValue);
+    handleModalVisabilityChange();
+  };
+
   return (
-    <ActionButtonStyled>
+    <ActionButtonStyled onClick={handleClick}>
       <AiOutlinePlus />
     </ActionButtonStyled>
   );

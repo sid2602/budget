@@ -38,7 +38,7 @@ type ContainerStyledProps = {
 };
 
 const Container = styled.section<ContainerStyledProps>`
-  max-width: ${({ editable }) => (editable ? "100%" : "735px")};
+  max-width: ${({ editable }) => (editable ? "935px" : "735px")};
 `;
 
 const Header = styled.header`

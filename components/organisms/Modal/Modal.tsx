@@ -1,19 +1,18 @@
 import styled from "styled-components";
 
 export type ModalProps = {
-  component: React.ElementType;
+  children: React.ReactNode;
+  onBackgroundClick: () => void;
 };
 
 export const Modal: React.FC<ModalProps> = ({
-  component: Component,
-  ...rest
+  children,
+  onBackgroundClick,
 }) => {
   return (
     <>
-      <ModalBackground />
-      <StyledModal>
-        <Component />
-      </StyledModal>
+      <ModalBackground onClick={onBackgroundClick} />
+      <StyledModal>{children}</StyledModal>
     </>
   );
 };

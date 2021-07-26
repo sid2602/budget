@@ -9,37 +9,46 @@ import { history } from "assets/mockedData/history";
 export default function Home() {
   return (
     <AppWrapper title="Historia">
-      <HistoryFiltersContainer>
-        <FilterHeader>Filtry</FilterHeader>
-        <SelectContainer>
-          <Select data={[]} placeholder="Przychód/wydatki" />
-          <Select data={[]} placeholder="Kategory" />
-          <Select data={[]} placeholder="Pod kategoria" />
-          <Select data={[]} placeholder="Sortowanie" />
-        </SelectContainer>
-        <Button primary={true} fullWidth={true}>
-          Filtruj
-        </Button>
-      </HistoryFiltersContainer>
-      <HistorySection>
-        <HistoryHeader>Historia</HistoryHeader>
-        <HistoryTransactionContainer editable={true}>
-          {history.map(({ id, Icon, category, date, action, comment }) => (
-            <HistoryTransaction
-              key={id}
-              Icon={Icon}
-              category={category}
-              date={date}
-              action={action}
-              comment={comment}
-              editable={true}
-            />
-          ))}
-        </HistoryTransactionContainer>
-      </HistorySection>
+      <Container>
+        <HistoryFiltersContainer>
+          <FilterHeader>Filtry</FilterHeader>
+          <SelectContainer>
+            <Select data={[]} placeholder="Przychód/wydatki" />
+            <Select data={[]} placeholder="Kategory" />
+            <Select data={[]} placeholder="Pod kategoria" />
+            <Select data={[]} placeholder="Sortowanie" />
+          </SelectContainer>
+          <Button primary={true} fullWidth={true}>
+            Filtruj
+          </Button>
+        </HistoryFiltersContainer>
+        <HistorySection>
+          <HistoryHeader>Historia</HistoryHeader>
+          <HistoryTransactionContainer editable={true}>
+            {history.map(({ id, Icon, category, date, action, comment }) => (
+              <HistoryTransaction
+                key={id}
+                Icon={Icon}
+                category={category}
+                date={date}
+                action={action}
+                comment={comment}
+                editable={true}
+              />
+            ))}
+          </HistoryTransactionContainer>
+        </HistorySection>
+      </Container>
     </AppWrapper>
   );
 }
+
+const Container = styled.div`
+  max-width: 1200px;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 const HistoryFiltersContainer = styled.section`
   width: 240px;
@@ -66,7 +75,7 @@ const SelectContainer = styled.div`
 `;
 
 const HistorySection = styled.section`
-  width: calc(95% - 240px);
-  height: 600px;
-  margin-left: auto;
+  max-width: 950px;
+  width: 100%;
+  margin-left: 2rem;
 `;
