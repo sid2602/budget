@@ -22,9 +22,9 @@ export const Default = Template.bind({});
 export const Delete = Template.bind({});
 
 Default.args = {
-  component: AddValueModal,
+  children: <AddValueModal />,
 };
 
 Delete.args = {
-  component: DeleteValueModal,
+  children: <DeleteValueModal />,
 };

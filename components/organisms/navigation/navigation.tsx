@@ -24,7 +24,7 @@ const links: LinkTypes[] = [
   { id: 1, Icon: GiReceiveMoney, href: "/saved" },
   { id: 2, Icon: GiTakeMyMoney, href: "/spended" },
   { id: 3, Icon: AiOutlinePieChart, href: "/chart" },
-  { id: 4, Icon: GoCalendar, href: "/calendar" },
+  { id: 4, Icon: GoCalendar, href: "/history" },
   { id: 5, Icon: BiUser, href: "/profile" },
 ];
 

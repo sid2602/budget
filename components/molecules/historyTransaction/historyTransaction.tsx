@@ -3,6 +3,7 @@ import { IconType } from "react-icons/lib";
 import { convertDateToString } from "helpers/convertDateToString";
 import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useModalContext, ModalType } from "contexts/ModalContext";
 export type HistoryTransactionProps = {
   Icon: IconType;
   category: string;
@@ -21,7 +22,16 @@ export const HistoryTransaction: React.FC<HistoryTransactionProps> = ({
   editable,
 }) => {
   const editRecord = () => {};
-  const deleteRecord = () => {};
+
+  const {
+    handleModadlTypeChange,
+    handleModalVisabilityChange,
+  } = useModalContext();
+
+  const deleteRecord = () => {
+    handleModadlTypeChange(ModalType.deleteModal);
+    handleModalVisabilityChange();
+  };
 
   return (
     <StyledHistoryTransaction>
@@ -39,7 +49,7 @@ export const HistoryTransaction: React.FC<HistoryTransactionProps> = ({
           <Recordbutton>
             <FiEdit2 />
           </Recordbutton>
-          <Recordbutton>
+          <Recordbutton onClick={deleteRecord}>
             <AiOutlineDelete />
           </Recordbutton>
         </>
@@ -86,6 +96,7 @@ const CategoryContainer = styled.div`
 const Category = styled.span`
   color: ${({ theme }) => theme.colors.primary};
   display: block;
+  margin-bottom: 0.5rem;
 `;
 
 const Date = styled.span`
@@ -107,6 +118,7 @@ const Action = styled.div<ActionType>`
 
 const Comment = styled.div`
   flex: 0.8;
+  margin-right: 1rem;
 `;
 
 const Recordbutton = styled.button`

@@ -46,6 +46,7 @@ const Category = styled.div`
 
 const Heading = styled.div`
   flex: 1;
+  margin-right: 0.1rem;
 `;
 
 const CommentHeading = styled(Heading)`

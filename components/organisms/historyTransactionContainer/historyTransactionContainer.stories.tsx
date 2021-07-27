@@ -7,7 +7,7 @@ import {
   HistoryTransactionProps,
 } from "components/molecules/historyTransaction/historyTransaction";
 import { HistoryTransactionContainer } from "./historyTransactionContainer";
-
+import { history } from "assets/mockedData/history";
 export default {
   component: HistoryTransactionContainer,
   title: "organisms/history Transaction Container",
@@ -17,38 +17,17 @@ const Template: Story<HistoryTransactionProps> = (args) => (
   <>
     <GlobalStyles />{" "}
     <HistoryTransactionContainer {...args}>
-      <HistoryTransaction
-        Icon={MdKitchen}
-        category="Jedzenie dom"
-        date={new Date("2021-10-10")}
-        action={-50}
-        comment="Comment"
-        editable={args.editable}
-      />
-      <HistoryTransaction
-        Icon={MdKitchen}
-        category="Jedzenie dom"
-        date={new Date("2021-10-9")}
-        action={-40}
-        comment="Comment"
-        editable={args.editable}
-      />
-      <HistoryTransaction
-        Icon={MdKitchen}
-        category="Jedzenie dom"
-        date={new Date("2021-10-8")}
-        action={-25}
-        comment="Comment"
-        editable={args.editable}
-      />
-      <HistoryTransaction
-        Icon={MdKitchen}
-        category="Jedzenie dom"
-        date={new Date("2021-10-7")}
-        action={-10}
-        comment="Comment"
-        editable={args.editable}
-      />
+      {history.map(({ id, Icon, category, date, action, comment }) => (
+        <HistoryTransaction
+          key={id}
+          Icon={Icon}
+          category={category}
+          date={date}
+          action={action}
+          comment={comment}
+          editable={true}
+        />
+      ))}
     </HistoryTransactionContainer>
   </>
 );

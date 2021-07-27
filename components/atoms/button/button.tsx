@@ -57,7 +57,7 @@ const StyledButton = styled.button<ButtonProps>`
   border: none;
   padding: 0.8rem 2.4rem;
   font-size: ${({ theme }) => theme.fontSizes.xs};
-
+  letter-spacing: 1px;
   ${({ primary }) =>
     primary &&
     css`
