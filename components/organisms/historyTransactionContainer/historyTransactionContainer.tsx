@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { useTranslation } from "react-i18next";
 export type HistoryTransactionContainerProps = {
   children: JSX.Element[];
   editable?: boolean;
@@ -9,17 +9,19 @@ export const HistoryTransactionContainer: React.FC<HistoryTransactionContainerPr
   children,
   editable,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Container editable={editable}>
       <Header>
         <SvgPlace />
-        <Category>Kategoria</Category>
-        <Comment>Komentarz</Comment>
-        <Action>Akcja</Action>
+        <Category>{t(`transactions.category`)}</Category>
+        <Comment>{t(`transactions.comment`)}</Comment>
+        <Action>{t(`transactions.action`)}</Action>
         {editable && (
           <>
-            <ExtendedHeading>Edytuj</ExtendedHeading>
-            <ExtendedHeading>Usuń</ExtendedHeading>
+            <ExtendedHeading>{t(`transactions.edit`)}</ExtendedHeading>
+            <ExtendedHeading>{t(`transactions.delete`)}</ExtendedHeading>
           </>
         )}
       </Header>

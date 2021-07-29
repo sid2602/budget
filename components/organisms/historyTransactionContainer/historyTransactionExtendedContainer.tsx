@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { useTranslation } from "react-i18next";
 export type HistoryTransactionExtendedContainerProps = {
   children: JSX.Element[];
 };
@@ -7,15 +7,17 @@ export type HistoryTransactionExtendedContainerProps = {
 export const HistoryTransactionExtendedContainer: React.FC<HistoryTransactionExtendedContainerProps> = ({
   children,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Header>
         <SvgPlace />
-        <Category>Kategoria</Category>
-        <Heading>Planowane przychody</Heading>
-        <Heading>Rzeczywiste przychody</Heading>
-        <Heading>Stopień realizacji %</Heading>
-        <CommentHeading>Komenatrz/ Pokaż więcej</CommentHeading>
+        <Category>{t(`transactions.category`)}</Category>
+        <Heading>{t(`transactions.plannedIncome`)}</Heading>
+        <Heading>{t(`transactions.actualIncome`)}</Heading>
+        <Heading>{t(`transactions.realizationPercent`)}</Heading>
+        <CommentHeading>{t(`transactions.commentShowMore`)}</CommentHeading>
       </Header>
 
       {children}

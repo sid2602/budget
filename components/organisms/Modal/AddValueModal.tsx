@@ -3,21 +3,25 @@ import { Input } from "components/atoms/input/input";
 import { Select } from "components/atoms/select/select";
 import { TextArea } from "components/atoms/TextArea/TextArea";
 import { Button } from "components/atoms/button/button";
+import { useTranslation } from "react-i18next";
+
 export type AddValueModalProps = {};
 
 export const AddValueModal: React.FC<AddValueModalProps> = ({}) => {
+  const { t } = useTranslation();
+
   return (
     <StyledAddValueModal>
       <Header>
-        <h2>Dodaj wydatki / przychody</h2>
+        <h2>{t(`filterOptions.incomeExpenses`)}</h2>
       </Header>
       <InputsContainer>
-        <Select data={[]} placeholder="Przychód/wydadki" />
-        <Select data={[]} placeholder="Kategoria" />
-        <Select data={[]} placeholder="Podkategoria" />
-        <Input placeholder="Kwota" error="" value="" />
-        <TextArea placeholder="Komentarz ... "></TextArea>
-        <Button primary>Zapisz</Button>
+        <Select data={[]} placeholder={t(`filterOptions.incomeExpenses`)} />
+        <Select data={[]} placeholder={t(`filterOptions.category`)} />
+        <Select data={[]} placeholder={t(`filterOptions.subCategory`)} />
+        <Input placeholder={t(`filterOptions.value`)} error="" value="" />
+        <TextArea placeholder={t(`transactions.comment`) + " ..."}></TextArea>
+        <Button primary>{t(`filterOptions.save`)}</Button>
       </InputsContainer>
     </StyledAddValueModal>
   );
