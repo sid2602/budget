@@ -1,21 +1,21 @@
 import styled from "styled-components";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Button } from "components/atoms/button/button";
+import { useTranslation } from "react-i18next";
 
 export type DeleteValueModal = {};
 
 export const DeleteValueModal: React.FC<DeleteValueModal> = ({}) => {
+  const { t } = useTranslation();
+
   return (
     <StyledDeleteValueModal>
       <AiOutlineDelete />
-      <Heading>Jesteś pewny?</Heading>
-      <Text>
-        Czy napewno checesz usunąć ten wydatek / przychód ? Informacje te nie
-        mogą zostać odzyskane
-      </Text>
+      <Heading>{t(`deleteModal.sure`)}</Heading>
+      <Text>{t(`deleteModal.doYouReally`)}</Text>
       <ButtonsContainer>
-        <Button primary={true}>Anuluj</Button>
-        <Button error={true}>Usuń</Button>
+        <Button primary={true}>{t(`transactions.cancel`)}</Button>
+        <Button error={true}>{t(`transactions.delete`)}</Button>
       </ButtonsContainer>
     </StyledDeleteValueModal>
   );

@@ -39,11 +39,15 @@ export type SelectData = {
 export type SelectProps = {
   data: SelectData[];
   placeholder?: String;
+  onChange?: (...rest: any) => void;
+  value?: any;
 };
 
 export const Select: React.FC<SelectProps> = ({
   data,
   placeholder,
+  onChange,
+  value,
   ...rest
 }) => (
   <StyledSelect
@@ -51,6 +55,13 @@ export const Select: React.FC<SelectProps> = ({
     className="basic-multi-select"
     classNamePrefix="select"
     placeholder={placeholder ? placeholder : "Wybierz"}
+    value={value}
+    onChange={onChange}
     {...rest}
   />
 );
+
+Select.defaultProps = {
+  onChange: () => {},
+  value: "",
+};

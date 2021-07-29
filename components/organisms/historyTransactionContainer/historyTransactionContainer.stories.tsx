@@ -8,6 +8,7 @@ import {
 } from "components/molecules/historyTransaction/historyTransaction";
 import { HistoryTransactionContainer } from "./historyTransactionContainer";
 import { history } from "assets/mockedData/history";
+
 export default {
   component: HistoryTransactionContainer,
   title: "organisms/history Transaction Container",
@@ -25,7 +26,7 @@ const Template: Story<HistoryTransactionProps> = (args) => (
           date={date}
           action={action}
           comment={comment}
-          editable={true}
+          editable={false}
         />
       ))}
     </HistoryTransactionContainer>

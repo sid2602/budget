@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import { ActionButton } from "components/atoms/actionButton/actionButton";
 import { Select } from "components/atoms/select/select";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 export type TopNavProps = {
   title: string;
+};
+
+export type languageOption = {
+  value: string;
+  label: string;
 };
 
 const languages = [
@@ -31,6 +38,15 @@ const monthsOption = monthsName.map((month) => {
 });
 
 export const TopNav: React.FC<TopNavProps> = ({ title }) => {
+  const { t, i18n } = useTranslation();
+
+  const [language, setLanguage] = useState(languages[0]);
+
+  const changeLanguage = (value: languageOption) => {
+    setLanguage(value);
+    i18n.changeLanguage(value.value);
+  };
+
   return (
     <TopNavStyled>
       <Heading>
@@ -41,7 +57,7 @@ export const TopNav: React.FC<TopNavProps> = ({ title }) => {
           <Select data={monthsOption} />
         </SelectContainer>
         <SelectContainer>
-          <Select data={languages} />
+          <Select data={languages} onChange={changeLanguage} value={language} />
         </SelectContainer>
         <ActionButton />
       </ButtonSection>

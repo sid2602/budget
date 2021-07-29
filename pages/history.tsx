@@ -5,25 +5,27 @@ import { Button } from "components/atoms/button/button";
 import { HistoryTransactionContainer } from "components/organisms/historyTransactionContainer/historyTransactionContainer";
 import { HistoryTransaction } from "components/molecules/historyTransaction/historyTransaction";
 import { history } from "assets/mockedData/history";
-
+import { useTranslation } from "react-i18next";
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
-    <AppWrapper title="Historia">
+    <AppWrapper title={t("filterOptions.history")}>
       <Container>
         <HistoryFiltersContainer>
-          <FilterHeader>Filtry</FilterHeader>
+          <FilterHeader> {t("filterOptions.filters")}</FilterHeader>
           <SelectContainer>
-            <Select data={[]} placeholder="Przychód/wydatki" />
-            <Select data={[]} placeholder="Kategory" />
-            <Select data={[]} placeholder="Pod kategoria" />
-            <Select data={[]} placeholder="Sortowanie" />
+            <Select data={[]} placeholder={t(`filterOptions.incomeExpenses`)} />
+            <Select data={[]} placeholder={t(`filterOptions.category`)} />
+            <Select data={[]} placeholder={t(`filterOptions.subCategory`)} />
+            <Select data={[]} placeholder={t(`filterOptions.sorting`)} />
           </SelectContainer>
           <Button primary={true} fullWidth={true}>
-            Filtruj
+            {t("filterOptions.filter")}
           </Button>
         </HistoryFiltersContainer>
         <HistorySection>
-          <HistoryHeader>Historia</HistoryHeader>
+          <HistoryHeader> {t("filterOptions.history")}</HistoryHeader>
           <HistoryTransactionContainer editable={true}>
             {history.map(({ id, Icon, category, date, action, comment }) => (
               <HistoryTransaction
