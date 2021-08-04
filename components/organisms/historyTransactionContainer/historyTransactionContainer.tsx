@@ -52,8 +52,8 @@ const Header = styled.header`
 `;
 
 const SvgPlace = styled.div`
-  width: 50px;
-  margin-right: 1rem;
+  width: 30px;
+  margin-right: 1.5rem;
 `;
 
 const Category = styled.div`

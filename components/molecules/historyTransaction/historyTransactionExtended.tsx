@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ProgressCircular } from "components/atoms/progressBar/progressBar";
 import { BsChevronDown } from "react-icons/bs";
 export type HistoryTransactionExtendedProps = {
-  Icon: IconType;
+  Icon: string;
   category: string;
   expectedPrice: number;
   actualPrice: number;
@@ -31,7 +31,7 @@ export const HistoryTransactionExtended: React.FC<HistoryTransactionExtendedProp
     <StyledHistoryTransactionContainer extended={extended}>
       <StyledHistoryTransactionExtended podcategory={podcategory}>
         <IconContainer>
-          <Icon />
+          <img src={`/icons/${Icon}.svg`} />
         </IconContainer>
         <Category>{category}</Category>
         <div>{expectedPrice} zł</div>

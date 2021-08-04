@@ -5,14 +5,16 @@ import styled from "styled-components";
 const StyledSelect = styled(ReactSelect)`
   width: 100%;
   height: auto;
+
   .select__control {
     height: 48px;
     font-size: ${({ theme }) => theme.fontSizes.xs};
-    background-color: ${({ theme }) => theme.input.background};
+    background-color: ${({ theme, isDisabled }) =>
+      isDisabled ? theme.colors.grayLight : theme.input.background};
     color: ${({ theme }) => theme.colors.fontColor};
     border: 1px solid ${({ theme }) => theme.colors.gray};
     border-radius: 10px;
-
+    cursor: pointer;
     &:hover {
       border: 1px solid ${({ theme }) => theme.colors.primary};
     }
@@ -22,6 +24,7 @@ const StyledSelect = styled(ReactSelect)`
     &:hover {
       background-color: ${({ theme }) => theme.colors.primaryLight};
     }
+    cursor: pointer;
   }
   .select__option--is-selected {
     background-color: ${({ theme }) => theme.colors.primary};
@@ -39,6 +42,7 @@ export type SelectData = {
 export type SelectProps = {
   data: SelectData[];
   placeholder?: String;
+  disabled?: boolean;
   onChange?: (...rest: any) => void;
   value?: any;
 };
@@ -48,6 +52,7 @@ export const Select: React.FC<SelectProps> = ({
   placeholder,
   onChange,
   value,
+  disabled,
   ...rest
 }) => (
   <StyledSelect
@@ -57,6 +62,7 @@ export const Select: React.FC<SelectProps> = ({
     placeholder={placeholder ? placeholder : "Wybierz"}
     value={value}
     onChange={onChange}
+    isDisabled={disabled}
     {...rest}
   />
 );
@@ -64,4 +70,5 @@ export const Select: React.FC<SelectProps> = ({
 Select.defaultProps = {
   onChange: () => {},
   value: "",
+  disabled: false,
 };

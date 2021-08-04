@@ -18,7 +18,7 @@ const Template: Story<HistoryTransactionProps> = (args) => (
   <>
     <GlobalStyles />{" "}
     <HistoryTransactionContainer {...args}>
-      {history.map(({ id, Icon, category, date, action, comment }) => (
+      {history.map(({ id, Icon, category, date, action, comment, expense }) => (
         <HistoryTransaction
           key={id}
           Icon={Icon}
@@ -27,6 +27,7 @@ const Template: Story<HistoryTransactionProps> = (args) => (
           action={action}
           comment={comment}
           editable={false}
+          expense={expense}
         />
       ))}
     </HistoryTransactionContainer>

@@ -35,17 +35,17 @@ export const Default = Template.bind({});
 export const Editable = Template.bind({});
 
 Default.args = {
-  Icon: MdKitchen,
+  Icon: "Strawberry",
   category: "Jedzenie dom",
-  date: new Date("2021-10-10"),
+  date: "2021-10-10",
   action: -50,
   comment: "some comment",
 };
 
 Editable.args = {
-  Icon: MdKitchen,
+  Icon: "Strawberry",
   category: "Jedzenie dom",
-  date: new Date("2021-10-10"),
+  date: "2021-10-10",
   action: -50,
   comment: "some comment",
   editable: true,

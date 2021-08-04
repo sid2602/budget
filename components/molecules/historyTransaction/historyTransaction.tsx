@@ -5,12 +5,13 @@ import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useModalContext, ModalType } from "contexts/ModalContext";
 export type HistoryTransactionProps = {
-  Icon: IconType;
+  Icon: string;
   category: string;
-  date: Date;
-  comment: string;
+  date: string;
+  comment?: string;
   action: number;
   editable?: boolean;
+  expense: boolean;
 };
 
 export const HistoryTransaction: React.FC<HistoryTransactionProps> = ({
@@ -20,6 +21,7 @@ export const HistoryTransaction: React.FC<HistoryTransactionProps> = ({
   comment,
   action,
   editable,
+  expense,
 }) => {
   const editRecord = () => {};
 
@@ -36,14 +38,14 @@ export const HistoryTransaction: React.FC<HistoryTransactionProps> = ({
   return (
     <StyledHistoryTransaction>
       <IconContainer>
-        <Icon />
+        <img src={`/icons/${Icon}.svg`} />
       </IconContainer>
       <CategoryContainer>
         <Category>{category}</Category>
         <Date>{convertDateToString(date)}</Date>
       </CategoryContainer>
-      <Comment>{comment}</Comment>
-      <Action minus={action < 0}>{action} zł</Action>
+      <Comment>{comment ? comment : "..."}</Comment>
+      <Action minus={expense}>{action} zł</Action>
       {editable && (
         <>
           <Recordbutton>
@@ -77,11 +79,11 @@ export const StyledHistoryTransaction = styled.div`
 
 export const IconContainer = styled.div`
   flex: none;
-  max-width: 75px;
-  margin-right: 1rem;
-  svg {
-    width: 50px;
-    height: 50px;
+  width: 30px;
+  margin-right: 1.5rem;
+  img {
+    width: 30px;
+    height: 30px;
   }
 `;
 
