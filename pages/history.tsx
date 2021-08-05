@@ -9,51 +9,23 @@ import axios from "axios";
 import { ShortTransactionTypes } from "types/transactions";
 import { GetServerSideProps } from "next";
 import { CategoryWithSubcategories } from "types/category";
-import { useEffect, useState } from "react";
+import useHistory from "hooks/pageHooks/useHistory";
 
 export type HistoryProps = {
   transactions: ShortTransactionTypes[];
   categories: CategoryWithSubcategories[];
 };
 
-// TO DO
-
-// CLEAN HANDLE CATEGORY CHANGE
-// CLEAN axios get server side props
-
 export default function Home({ transactions, categories }: HistoryProps) {
   const { t } = useTranslation();
-  const [selectedCategory, setSelectedCategory] = useState<SelectData>();
-  const [allcategories, setAllCategories] = useState<SelectData[]>([]);
-
-  const [selectedSubCategory, setSelectedSubCategory] = useState<SelectData>();
-  const [allSubCategories, setAllSubCategoriess] = useState<SelectData[]>([]);
-
-  const handleCategoryChange = (option: SelectData) => {
-    setSelectedCategory(option);
-    const indexOfActiveCategory = categories.findIndex(
-      (category) => category.name === option.value
-    );
-
-    const subCategories = categories[indexOfActiveCategory].subcategories;
-
-    const convertedSubCategories = subCategories?.map(({ name }) => {
-      return { value: name, label: name };
-    });
-
-    setAllSubCategoriess(convertedSubCategories);
-  };
-
-  const handleSubCategoryChange = (option: SelectData) => {
-    setSelectedSubCategory(option);
-  };
-
-  useEffect(() => {
-    const convertedCategories = categories.map(({ name }) => {
-      return { value: name, label: name };
-    });
-    setAllCategories(convertedCategories);
-  }, []);
+  const {
+    selectedCategory,
+    allcategories,
+    selectedSubCategory,
+    allSubCategories,
+    handleSelectCategory,
+    handleSelectSubCategory,
+  } = useHistory(categories);
 
   return (
     <AppWrapper title={t("filterOptions.history")}>
@@ -66,14 +38,14 @@ export default function Home({ transactions, categories }: HistoryProps) {
               data={allcategories}
               placeholder={t(`filterOptions.category`)}
               value={selectedCategory}
-              onChange={handleCategoryChange}
+              onChange={handleSelectCategory}
             />
             <Select
               data={allSubCategories}
               placeholder={t(`filterOptions.subCategory`)}
               disabled={!selectedCategory}
               value={selectedSubCategory}
-              onChange={handleSubCategoryChange}
+              onChange={handleSelectSubCategory}
             />
             <Select data={[]} placeholder={t(`filterOptions.sorting`)} />
           </SelectContainer>
@@ -106,15 +78,15 @@ export default function Home({ transactions, categories }: HistoryProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const transactionsResponse = await axios.get(
-    "http://localhost:3000/api/transactions"
-  );
-  const categoriesResponse = await axios.get(
-    "http://localhost:3000/api/categories"
-  );
+  const axiosRequests = [
+    axios.get("http://localhost:3000/api/transactions"),
+    axios.get("http://localhost:3000/api/categories"),
+  ];
 
-  const transactions: ShortTransactionTypes[] = transactionsResponse.data;
-  const categories: CategoryWithSubcategories[] = categoriesResponse.data;
+  const response = await axios.all(axiosRequests);
+
+  const transactions: ShortTransactionTypes[] = response[0].data;
+  const categories: CategoryWithSubcategories[] = response[1].data;
   return { props: { transactions, categories } };
 };
 

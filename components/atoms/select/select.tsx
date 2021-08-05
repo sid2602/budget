@@ -43,7 +43,7 @@ export type SelectProps = {
   data: SelectData[];
   placeholder?: String;
   disabled?: boolean;
-  onChange?: (...rest: any) => void;
+  onChange?: (property: SelectData) => void;
   value?: any;
 };
 
