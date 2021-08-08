@@ -19,13 +19,15 @@ export type HistoryProps = {
 export default function Home({ transactions, categories }: HistoryProps) {
   const { t } = useTranslation();
   const {
+    filteredTransactions,
     selectedCategory,
     allcategories,
     selectedSubCategory,
     allSubCategories,
     handleSelectCategory,
     handleSelectSubCategory,
-  } = useHistory(categories);
+    handleFilterBtnClick,
+  } = useHistory(transactions, categories);
 
   return (
     <AppWrapper title={t("filterOptions.history")}>
@@ -49,14 +51,18 @@ export default function Home({ transactions, categories }: HistoryProps) {
             />
             <Select data={[]} placeholder={t(`filterOptions.sorting`)} />
           </SelectContainer>
-          <Button primary={true} fullWidth={true}>
+          <Button
+            primary={true}
+            fullWidth={true}
+            onClick={handleFilterBtnClick}
+          >
             {t("filterOptions.filter")}
           </Button>
         </HistoryFiltersContainer>
         <HistorySection>
           <HistoryHeader> {t("filterOptions.history")}</HistoryHeader>
           <HistoryTransactionContainer editable={true}>
-            {transactions.map(
+            {filteredTransactions.map(
               ({ id, subCategory, date, action, comment, expense }) => (
                 <HistoryTransaction
                   key={id}

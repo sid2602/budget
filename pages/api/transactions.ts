@@ -6,7 +6,35 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  let where = {};
+
+  if (req.query) {
+    const { category, subCategory } = req?.query;
+
+    if (category !== "undefined" && category !== "all") {
+      where = {
+        category: {
+          name: {
+            equals: category,
+          },
+        },
+      };
+    }
+
+    if (subCategory !== "undefined" && subCategory !== "all") {
+      where = {
+        ...where,
+        subCategory: {
+          name: {
+            equals: subCategory,
+          },
+        },
+      };
+    }
+  }
+
   const transactions = await prisma.transaction.findMany({
+    where,
     include: {
       category: {
         select: {
@@ -22,5 +50,5 @@ export default async function handler(
     },
   });
 
-  res.status(200).json(transactions);
+  return res.status(200).json(transactions);
 }

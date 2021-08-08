@@ -1,13 +1,44 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { SelectData } from "components/atoms/select/select";
 import { CategoryWithSubcategories } from "types/category";
 import useSelect from "hooks/sharedHooks/useSelect";
-const useHistory = (categories: CategoryWithSubcategories[]) => {
-  const [selectedCategory, handleSelectCategory] = useSelect();
+import { ShortTransactionTypes } from "types/transactions";
+import axios from "axios";
+
+const useHistory = (
+  transactions: ShortTransactionTypes[],
+  categories: CategoryWithSubcategories[]
+) => {
+  const resetSubcategories = () => {
+    handleSelectSubCategory(undefined);
+  };
+
+  const [filteredTransactions, setFilteredTransactions] = useState(
+    transactions
+  );
+
+  const [selectedCategory, handleSelectCategory] = useSelect(
+    resetSubcategories
+  );
   const [allcategories, setAllCategories] = useState<SelectData[]>([]);
 
   const [selectedSubCategory, handleSelectSubCategory] = useSelect();
   const [allSubCategories, setAllSubCategoriess] = useState<SelectData[]>([]);
+
+  const allOption = useMemo(() => {
+    return { label: "Wszystkie", value: "all" };
+  }, []);
+
+  const handleFilterBtnClick = useCallback(async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3000/api/transactions?category=${selectedCategory?.value}&subCategory=${selectedSubCategory?.value}`
+      );
+      setFilteredTransactions(data);
+    } catch (e) {
+      console.log(e.response, "hande filter button click error");
+    }
+  }, [selectedCategory, selectedSubCategory]);
 
   useEffect(() => {
     const getSubCategories = () => {
@@ -15,12 +46,16 @@ const useHistory = (categories: CategoryWithSubcategories[]) => {
         (category) => category.name === selectedCategory?.value
       );
 
-      const subCategories = categories[indexOfActiveCategory]?.subcategories;
+      if (indexOfActiveCategory > -1) {
+        const subCategories = categories[indexOfActiveCategory].subcategories;
 
-      const convertedSubCategories = subCategories?.map(({ name }) => {
-        return { value: name, label: name };
-      });
-      setAllSubCategoriess(convertedSubCategories);
+        const convertedSubCategories: SelectData[] = subCategories.map(
+          ({ name }) => {
+            return { value: name, label: name };
+          }
+        );
+        setAllSubCategoriess([allOption, ...convertedSubCategories]);
+      }
     };
     getSubCategories();
   }, [selectedCategory]);
@@ -29,16 +64,18 @@ const useHistory = (categories: CategoryWithSubcategories[]) => {
     const convertedCategories = categories.map(({ name }) => {
       return { value: name, label: name };
     });
-    setAllCategories(convertedCategories);
+    setAllCategories([allOption, ...convertedCategories]);
   }, []);
 
   return {
+    filteredTransactions,
     selectedCategory,
     allcategories,
     selectedSubCategory,
     allSubCategories,
     handleSelectCategory,
     handleSelectSubCategory,
+    handleFilterBtnClick,
   };
 };
 
